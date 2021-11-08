@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+                *{
+                        margin: 0;
+                        padding: 0;
+                }
+                nav {
+                        height: 70px;
+                        background-color: black;
+                        line-height: 70px;
+                        font-family: Arial, Helvetica, sans-serif;
+                        list-style: none;
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 10px;
+                }
+
+                nav a {
+                        color: white;
+                        font-weight: 800;
+                        font-size: 23px;
+                        text-decoration: none;
+                }
+
+
+                #mymeal{
+                        display: grid;
+                        grid-template-columns:23% 23% 23% 23% ;
+                }
+
+                #mymeal img{
+                        width: 200px;
+                }
+                #mymeal div{
+                        display: flex;
+                        flex-direction: column;
+                }
+
+                #mymeal button{
+                        width: max-content;
+                }
+        </style>
+</head>
+<body>
+        <nav>
+                <a href="menu.html">Menu</a>
+                <a href="login.html">Login</a>
+                <a href="signUp.html">SignUp</a>
+        </nav>
+
+        <div id="mymeal"></div>
+        
+</body>
+
+<script>
+        // http://www.themealdb.com/api/json/v1/1/random.php
+const container=document.getElementById("mymeal")
+fetch ("http://www.themealdb.com/api/json/v1/1/filter.php?a=Indian")
+.then(res =>res.json())
+.then(data =>{
+        let Data=data.meals
+        console.log('Data:', Data)
+        // console.log('Data:', data)
+   showmeal(Data)
+})
+
+function showmeal(data){
+      console.log('data:', data[0])
+
+
+
+for(let i=0;i<data.length;i++){
+        let div =document.createElement("div")
+        
+        let head=document.createElement("h3")
+        head.innerText=data[i].strMeal
+        
+        let img=document.createElement("img")
+        img.src=data[i].strMealThumb
+ 
+        let price=document.createElement("span")  
+        let p=Math.floor(Math.random()*100 )    
+        price.innerText= "₹"+p
+
+        let cart=document.createElement("button")
+        cart.innerText="Add to cart" 
+       cart.setAttribute("id","addcart")
+
+        div.append(head,img,price,cart)
+        container.appendChild(div)
+}
+
+
+function addcart(){
+   console.log("y")
+}
+
+}
+
+</script>
+</html>
