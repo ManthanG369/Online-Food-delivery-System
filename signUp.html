@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <style>
-                 *{
+                   *{
                         margin: 0;
                         padding: 0;
                 }
@@ -17,8 +17,9 @@
                         font-family: Arial, Helvetica, sans-serif;
                         list-style: none;
                         display: flex;
-                        justify-content: flex-end;
+                        justify-content: space-between;
                         gap: 10px;
+                        color: white;
                 }
 
                 nav a {
@@ -27,19 +28,38 @@
                         font-size: 23px;
                         text-decoration: none;
                 }
+                .sign{
+                        width:30%;
+                        margin:30px auto;
+                }
+                .sign form{
+                        display:flex;
+                        flex-direction:column;
+                        gap:10px
+                }
         </style>
 </head>
 <body>
         <nav>
-                <a href="menu.html">Menu</a>
+                <div>
+                        <h1>Food App</h1>
+                </div>
+               <div> <a href="menu.html">Menu</a>
                 <a href="login.html">Login</a>
-                <a href="signUp.html">SignUp</a>
+                <a href="signUp.html">SignUp</a></div>
         </nav>
 
         <div class="sign">
-                <form action="" onsubmit=signup()>
-  <label for="name">Name</label>
-  <input type="text">
+                <form action="" onsubmit=signup() id="myform">
+                       <h1>Sign Up</h1>
+                        <input type="text" id="name" placeholder="Enter name">
+                        <input type="email" id="email" placeholder="Enter email">
+                        <input type="password" id="password" placeholder="Enter password">
+                        <input type="text" id="username" placeholder="Enter username">
+                        <input type="number" id="mobile" placeholder="Enter mobile">
+                        <input type="text" id="description" placeholder="Enter description">
+
+                        <input type="submit" value="submit">
                 </form>
         </div>
 </body>

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <style>
-                *{
+                * {
                         margin: 0;
                         padding: 0;
                 }
+
                 nav {
                         height: 70px;
                         background-color: black;
@@ -17,8 +19,9 @@
                         font-family: Arial, Helvetica, sans-serif;
                         list-style: none;
                         display: flex;
-                        justify-content: flex-end;
+                        justify-content: space-between;
                         gap: 10px;
+                        color: white;
                 }
 
                 nav a {
@@ -29,79 +32,109 @@
                 }
 
 
-                #mymeal{
+                #mymeal {
                         display: grid;
-                        grid-template-columns:23% 23% 23% 23% ;
+                        grid-template-columns: 23% 23% 23% 23%;
                 }
 
-                #mymeal img{
-                        width: 200px;
+                #mymeal img {
+                        width: 80%;
                 }
-                #mymeal div{
+
+                #mymeal div {
                         display: flex;
                         flex-direction: column;
+                        /* justify-content: center; */
+                        align-items: center;
                 }
 
-                #mymeal button{
+                #mymeal button {
                         width: max-content;
                 }
         </style>
 </head>
+
 <body>
         <nav>
-                <a href="menu.html">Menu</a>
-                <a href="login.html">Login</a>
-                <a href="signUp.html">SignUp</a>
+                <div>
+                        <h1>Food App</h1>
+                </div>
+                <div> <a href="menu.html">Menu</a>
+                        <a href="login.html">Login</a>
+                        <a href="signUp.html">SignUp</a>
+                </div>
         </nav>
 
         <div id="mymeal"></div>
-        
+
 </body>
 
 <script>
         // http://www.themealdb.com/api/json/v1/1/random.php
-const container=document.getElementById("mymeal")
-fetch ("http://www.themealdb.com/api/json/v1/1/filter.php?a=Indian")
-.then(res =>res.json())
-.then(data =>{
-        let Data=data.meals
-        console.log('Data:', Data)
-        // console.log('Data:', data)
-   showmeal(Data)
-})
+        const container = document.getElementById("mymeal")
+        var Data;
+        fetch("http://www.themealdb.com/api/json/v1/1/filter.php?a=Indian")
+                .then(res => res.json())
+                .then(data => {
+                        Data = data.meals
+                        // console.log('Data:', Data)
+                        
+                        showmeal(Data)
+                })
 
-function showmeal(data){
-      console.log('data:', data[0])
-
-
-
-for(let i=0;i<data.length;i++){
-        let div =document.createElement("div")
-        
-        let head=document.createElement("h3")
-        head.innerText=data[i].strMeal
-        
-        let img=document.createElement("img")
-        img.src=data[i].strMealThumb
- 
-        let price=document.createElement("span")  
-        let p=Math.floor(Math.random()*100 )    
-        price.innerText= "₹"+p
-
-        let cart=document.createElement("button")
-        cart.innerText="Add to cart" 
-       cart.setAttribute("id","addcart")
-
-        div.append(head,img,price,cart)
-        container.appendChild(div)
-}
+        function showmeal(data) {
+                //       console.log('data:', data[0])
 
 
-function addcart(){
-   console.log("y")
-}
 
-}
+                for (let i = 0; i < data.length; i++) {
+                        let div = document.createElement("div")
+
+                        let head = document.createElement("h3")
+                        head.innerText = data[i].strMeal
+
+                        let img = document.createElement("img")
+                        img.src = data[i].strMealThumb
+
+                        let price = document.createElement("span")
+                        let p = Math.floor(Math.random() * 100)
+                        price.innerText = "₹" + p
+
+                        let cart = document.createElement("button")
+                        cart.innerText = "Add to cart"
+                        cart.setAttribute("id", "addcart")
+                    
+
+                        div.append(head, img, price, cart)
+                        container.appendChild(div)
+                }
+
+
+
+        }
+        var meal = document.querySelector("#mymeal")
+        // console.log('meal:', meal)
+
+        var all_btn = meal.querySelectorAll("button")
+        // console.log('all_btn:', all_btn)
+
+        for (let i = 0; i < all_btn.length; i++) {
+                all_btn[i].addEventListener("click", addcart)
+                all_btn[i].addEventListener("click", meal(Data[i]))
+        }
+
+
+        function addcart(e) {
+                e.target
+                console.log('target:', e.target.parentNode)
+        }
+
+        function meal(data) {
+
+                console.log('data:', data)
+        }
+
 
 </script>
+
 </html>

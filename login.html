@@ -17,8 +17,9 @@
                         font-family: Arial, Helvetica, sans-serif;
                         list-style: none;
                         display: flex;
-                        justify-content: flex-end;
+                        justify-content: space-between;
                         gap: 10px;
+                        color: white;
                 }
 
                 nav a {
@@ -27,13 +28,36 @@
                         font-size: 23px;
                         text-decoration: none;
                 }
+                .login{
+                        width:30%;
+                        margin:30px auto;
+                }
+                .login form{
+                        display:flex;
+                        flex-direction:column;
+                        gap:10px;
+                        text-align: center;
+                }
         </style>
 </head>
 <body>
         <nav>
-                <a href="menu.html">Menu</a>
+                <div>
+                        <h1>Food App</h1>
+                </div>
+               <div> <a href="menu.html">Menu</a>
                 <a href="login.html">Login</a>
-                <a href="signUp.html">SignUp</a>
+                <a href="signUp.html">SignUp</a></div>
         </nav>
+        <div class="login">
+                <form action="" onsubmit=login() id="myform">
+                       <h1>login</h1>
+                        <input type="text" id="name" placeholder="Enter name">
+                       
+                        <input type="password" id="password" placeholder="Enter password">
+                       
+                        <input type="submit" value="submit">
+                </form>
+        </div>
 </body>
 </html>
